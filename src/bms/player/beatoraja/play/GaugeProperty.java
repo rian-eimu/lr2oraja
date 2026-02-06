@@ -117,12 +117,12 @@ public enum GaugeProperty {
         ASSIST_EASY_LR2(TOTAL ,2 ,100 ,20, 60, 0, new float[]{1.2f, 1.2f, 0.6f, -3.2f, -4.8f, -1.6f}, new float[][]{}),
         EASY_LR2(TOTAL ,2 ,100 ,20, 80, 0, new float[]{1.2f, 1.2f, 0.6f, -3.2f, -4.8f, -1.6f}, new float[][]{}),
         NORMAL_LR2(TOTAL ,2 ,100 ,20, 80, 0, new float[]{1.0f, 1.0f, 0.5f, -4.0f, -6.0f, -2.0f}, new float[][]{}),
-        HARD_LR2(MODIFY_DAMAGE ,0 ,100 ,100, 0, 0, new float[]{0.1f, 0.1f, 0.05f, -6.0f, -10.0f, -2.0f}, new float[][]{{32, 0.6f}}),
-        EXHARD_LR2(MODIFY_DAMAGE ,0 ,100 ,100, 0, 0, new float[]{0.1f, 0.1f, 0.05f, -12.0f, -20.0f, -2.0f}, new float[][]{}),
-        HAZARD_LR2(null ,0 ,100 ,100, 0, 0, new float[]{0.15f, 0.06f, 0, -100.0f, -100.0f, -10.0f}, new float[][]{}),
-        CLASS_LR2(null ,0 ,100 ,100, 0, 0, new float[]{0.10f, 0.10f, 0.05f, -2f, -3f, -2f}, new float[][]{{32, 0.6f}}),
-        EXCLASS_LR2(null ,0 ,100 ,100, 0, 0, new float[]{0.10f, 0.10f, 0.05f, -6.0f, -10.0f, -2.0f}, new float[][]{{32, 0.6f}}),
-        EXHARDCLASS_LR2(null ,0 ,100 ,100, 0, 0, new float[]{0.10f, 0.10f, 0.05f, -12.0f, -20.0f, -2.0f}, new float[][]{}),
+        HARD_LR2(MODIFY_DAMAGE ,0 ,100 ,100, 0, 2, new float[]{0.1f, 0.1f, 0.05f, -6.0f, -10.0f, -2.0f}, new float[][]{{32, 0.6f}}),
+        EXHARD_LR2(MODIFY_DAMAGE ,0 ,100 ,100, 0, 2, new float[]{0.1f, 0.1f, 0.05f, -12.0f, -20.0f, -2.0f}, new float[][]{}),
+        HAZARD_LR2(null ,0 ,100 ,100, 0, 2, new float[]{0.15f, 0.06f, 0, -100.0f, -100.0f, -10.0f}, new float[][]{}),
+        CLASS_LR2(null ,0 ,100 ,100, 0, 2, new float[]{0.10f, 0.10f, 0.05f, -2f, -3f, -2f}, new float[][]{{32, 0.6f}}),
+        EXCLASS_LR2(null ,0 ,100 ,100, 0, 2, new float[]{0.10f, 0.10f, 0.05f, -6.0f, -10.0f, -2.0f}, new float[][]{{32, 0.6f}}),
+        EXHARDCLASS_LR2(null ,0 ,100 ,100, 0, 2, new float[]{0.10f, 0.10f, 0.05f, -12.0f, -20.0f, -2.0f}, new float[][]{}),
         ;
 
         /**
