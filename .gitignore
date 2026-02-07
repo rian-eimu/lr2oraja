@@ -19,3 +19,7 @@ b.bat
 *.cim
 .idea/
 .DS_Store
+.gemini
+/ant/
+ant.bat
+build.properties

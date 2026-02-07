@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.JsonWriter.OutputType;
  * @author exch
  */
 public class Config implements Validatable {
-	
+
 	/**
 	 * 旧コンフィグパス。そのうち削除
 	 */
@@ -26,7 +26,7 @@ public class Config implements Validatable {
 	/**
 	 * コンフィグパス(UTF-8)
 	 */
-	static final Path configpath = Paths.get("config_sys.json");	
+	static final Path configpath = Paths.get("config_sys.json");
 
 	/**
 	 * 選択中のプレイヤー名
@@ -97,11 +97,11 @@ public class Config implements Validatable {
 	/**
 	 * スキン画像のキャッシュイメージを作成するかどうか
 	 */
-    private boolean cacheSkinImage = false;
-    /**
-     * songinfoデータベースを使用するかどうか
-     */
-    private boolean useSongInfo = true;
+	private boolean cacheSkinImage = false;
+	/**
+	 * songinfoデータベースを使用するかどうか
+	 */
+	private boolean useSongInfo = true;
 
 	private String songpath = SONGPATH_DEFAULT;
 	public static final String SONGPATH_DEFAULT = "songdata.db";
@@ -163,6 +163,11 @@ public class Config implements Validatable {
 
 	private boolean useDiscordRPC = false;
 	private boolean setClipboardScreenshot = false;
+	private ScreenShotFormat screenshotFormat = ScreenShotFormat.PNG;
+
+	public enum ScreenShotFormat {
+		PNG, JPG
+	}
 
 	private static final String[] DEFAULT_TABLEURL = { "http://bmsnormal2.syuriken.jp/table.html",
 			"http://bmsnormal2.syuriken.jp/table_insane.html",
@@ -305,12 +310,12 @@ public class Config implements Validatable {
 	}
 
 	public int getMaxSearchBarCount() {
-	    return maxSearchBarCount;
-    }
+		return maxSearchBarCount;
+	}
 
-    public void setMaxSearchBarCount(int maxSearchBarCount) {
-	    this.maxSearchBarCount = maxSearchBarCount;
-    }
+	public void setMaxSearchBarCount(int maxSearchBarCount) {
+		this.maxSearchBarCount = maxSearchBarCount;
+	}
 
 	public boolean isShowNoSongExistingBar() {
 		return showNoSongExistingBar;
@@ -320,32 +325,37 @@ public class Config implements Validatable {
 		this.showNoSongExistingBar = showNoExistingSongBar;
 	}
 
-	public int getScrollDurationLow(){
+	public int getScrollDurationLow() {
 		return scrolldurationlow;
 	}
-	public void setScrollDutationLow(int scrolldurationlow){
+
+	public void setScrollDutationLow(int scrolldurationlow) {
 		this.scrolldurationlow = scrolldurationlow;
 	}
-	public int getScrollDurationHigh(){
+
+	public int getScrollDurationHigh() {
 		return scrolldurationhigh;
 	}
-	public void setScrollDutationHigh(int scrolldurationhigh){
+
+	public void setScrollDutationHigh(int scrolldurationhigh) {
 		this.scrolldurationhigh = scrolldurationhigh;
 	}
 
-    public boolean isAnalogScroll() {
-        return analogScroll;
-    }
-    public void setAnalogScroll(boolean analogScroll) {
-        this.analogScroll = analogScroll;
-    }
+	public boolean isAnalogScroll() {
+		return analogScroll;
+	}
 
-    public int getAnalogTicksPerScroll() {
-        return analogTicksPerScroll;
-    }
-    public void setAnalogTicksPerScroll(int analogTicksPerScroll) {
-        this.analogTicksPerScroll = Math.max(analogTicksPerScroll, 1);
-    }
+	public void setAnalogScroll(boolean analogScroll) {
+		this.analogScroll = analogScroll;
+	}
+
+	public int getAnalogTicksPerScroll() {
+		return analogTicksPerScroll;
+	}
+
+	public void setAnalogTicksPerScroll(int analogTicksPerScroll) {
+		this.analogTicksPerScroll = Math.max(analogTicksPerScroll, 1);
+	}
 
 	public SongPreview getSongPreview() {
 		return songPreview;
@@ -386,13 +396,21 @@ public class Config implements Validatable {
 	public void setUseDiscordRPC(boolean useDiscordRPC) {
 		this.useDiscordRPC = useDiscordRPC;
 	}
-	
+
 	public boolean isSetClipboardWhenScreenshot() {
 		return setClipboardScreenshot;
 	}
 
 	public void setClipboardWhenScreenshot(boolean setClipboardScreenshot) {
 		this.setClipboardScreenshot = setClipboardScreenshot;
+	}
+
+	public ScreenShotFormat getScreenshotFormat() {
+		return screenshotFormat;
+	}
+
+	public void setScreenshotFormat(ScreenShotFormat screenshotFormat) {
+		this.screenshotFormat = screenshotFormat;
 	}
 
 	public boolean isUpdatesong() {
@@ -522,14 +540,14 @@ public class Config implements Validatable {
 		windowWidth = MathUtils.clamp(windowWidth, Resolution.SD.width, Resolution.ULTRAHD.width);
 		windowHeight = MathUtils.clamp(windowHeight, Resolution.SD.height, Resolution.ULTRAHD.height);
 
-		if(audio == null) {
+		if (audio == null) {
 			audio = new AudioConfig();
 		}
 		audio.validate();
 		maxFramePerSecond = MathUtils.clamp(maxFramePerSecond, 0, 50000);
 		prepareFramePerSecond = MathUtils.clamp(prepareFramePerSecond, 0, 100000);
-        maxSearchBarCount = MathUtils.clamp(maxSearchBarCount, 1, 100);
-        songPreview = (songPreview != null) ? songPreview : SongPreview.LOOP;
+		maxSearchBarCount = MathUtils.clamp(maxSearchBarCount, 1, 100);
+		songPreview = (songPreview != null) ? songPreview : SongPreview.LOOP;
 
 		scrolldurationlow = MathUtils.clamp(scrolldurationlow, 2, 1000);
 		scrolldurationhigh = MathUtils.clamp(scrolldurationhigh, 1, 1000);
@@ -542,7 +560,7 @@ public class Config implements Validatable {
 
 		bmsroot = Validatable.removeInvalidElements(bmsroot);
 
-		if(tableURL == null) {
+		if (tableURL == null) {
 			tableURL = DEFAULT_TABLEURL;
 		}
 		tableURL = Validatable.removeInvalidElements(tableURL);
@@ -558,6 +576,7 @@ public class Config implements Validatable {
 		tablepath = tablepath != null ? tablepath : TABLEPATH_DEFAULT;
 		playerpath = playerpath != null ? playerpath : PLAYERPATH_DEFAULT;
 		skinpath = skinpath != null ? skinpath : SKINPATH_DEFAULT;
+		screenshotFormat = screenshotFormat != null ? screenshotFormat : ScreenShotFormat.PNG;
 		return true;
 	}
 
@@ -566,12 +585,13 @@ public class Config implements Validatable {
 		if (Files.exists(configpath)) {
 			Json json = new Json();
 			json.setIgnoreUnknownFields(true);
-			try (Reader reader = new InputStreamReader(new FileInputStream(configpath.toFile()), StandardCharsets.UTF_8)) {
+			try (Reader reader = new InputStreamReader(new FileInputStream(configpath.toFile()),
+					StandardCharsets.UTF_8)) {
 				config = json.fromJson(Config.class, reader);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(Files.exists(configpath_old)) {
+		} else if (Files.exists(configpath_old)) {
 			// 旧コンフィグ読み込み。そのうち削除
 			Json json = new Json();
 			json.setIgnoreUnknownFields(true);
@@ -579,9 +599,9 @@ public class Config implements Validatable {
 				config = json.fromJson(Config.class, reader);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}			
+			}
 		}
-		if(config == null) {
+		if (config == null) {
 			config = new Config();
 		}
 		config.validate();
@@ -595,7 +615,8 @@ public class Config implements Validatable {
 		Json json = new Json();
 		json.setUsePrototypes(false);
 		json.setOutputType(OutputType.json);
-		try (Writer writer = new OutputStreamWriter(new FileOutputStream(configpath.toFile()), StandardCharsets.UTF_8)) {
+		try (Writer writer = new OutputStreamWriter(new FileOutputStream(configpath.toFile()),
+				StandardCharsets.UTF_8)) {
 			writer.write(json.prettyPrint(config));
 			writer.flush();
 		} catch (IOException e) {
@@ -620,10 +641,10 @@ public class Config implements Validatable {
 	}
 
 	public enum DisplayMode {
-		FULLSCREEN,BORDERLESS,WINDOW;
+		FULLSCREEN, BORDERLESS, WINDOW;
 	}
 
 	public enum SongPreview {
-		NONE,ONCE,LOOP;
+		NONE, ONCE, LOOP;
 	}
 }

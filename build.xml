@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="create_run_jar" name="Create Runnable Jar for Project beatoraja">
 
+	<property file="build.properties" />
 	<property environment="env" />
 	<property name="build.src" value="src" />
 	<property name="build.dest" value="build" />
-	<property name="app.version" value="0.5.4"/>
+	<property name="app.version" value="0.5.4" />
 	<property name="dir.release" value="release" />
 	<property name="dir.release.windows" value="${dir.release}/windows" />
 	<property name="dir.release.linux" value="${dir.release}/linux" />
@@ -12,12 +13,15 @@
 	<!-- zip file name -->
 	<property name="zipname" value="beatoraja_${app.version}" />
 
+	<property name="source.version" value="17" />
+	<property name="target.version" value="17" />
+	<property name="debug" value="true" />
+
 	<!-- launch4j setting -->
 	<property name="launch4j.dir" location="launch4j" />
 	<taskdef name="launch4j"
 	    classname="net.sf.launch4j.ant.Launch4jTask"
-	    classpath="${launch4j.dir}/launch4j.jar
-	        :${launch4j.dir}/lib/xstream.jar" />
+	    classpath="${launch4j.dir}/launch4j.jar;${launch4j.dir}/lib/xstream.jar" />
 
 	<path id="build.lib">
 		<fileset dir="lib" includes="*.jar" />
@@ -33,7 +37,7 @@
 	</target>
 
 	<target name="compile" depends="clean">
-		<javac classpathref="build.lib" srcdir="${build.src}" debug="${debug}" destdir="${build.dest}" encoding="UTF-8" />
+		<javac classpathref="build.lib" srcdir="${build.src}" debug="${debug}" destdir="${build.dest}" encoding="UTF-8" source="${source.version}" target="${target.version}" includeantruntime="false" />
 	</target>
 
 	<target name="create_run_jar" depends="compile">

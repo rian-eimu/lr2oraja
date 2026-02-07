@@ -45,7 +45,6 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class PlayConfigurationView implements Initializable {
 
-
 	// TODO スキンプレビュー機能
 
 	@FXML
@@ -76,7 +75,7 @@ public class PlayConfigurationView implements Initializable {
 	@FXML
 	private Tab courseTab;
 	@FXML
-    private Tab streamTab;
+	private Tab streamTab;
 	@FXML
 	private HBox controlPanel;
 
@@ -205,7 +204,7 @@ public class PlayConfigurationView implements Initializable {
 	@FXML
 	private ComboBox<Integer> judgealgorithm;
 
-    @FXML
+	@FXML
 	private ComboBox<Integer> autosavereplay1;
 	@FXML
 	private ComboBox<Integer> autosavereplay2;
@@ -214,22 +213,22 @@ public class PlayConfigurationView implements Initializable {
 	@FXML
 	private ComboBox<Integer> autosavereplay4;
 
-    @FXML
-    private CheckBox usecim;
+	@FXML
+	private CheckBox usecim;
 
-    @FXML
+	@FXML
 	private TextField txtTwitterConsumerKey;
-    @FXML
+	@FXML
 	private PasswordField txtTwitterConsumerSecret;
 
-    @FXML
-    private Button twitterAuthButton;
-    @FXML
-    private Label txtTwitterAuthenticated;
-    @FXML
-    private TextField txtTwitterPIN;
-    @FXML
-    private Button twitterPINButton;
+	@FXML
+	private Button twitterAuthButton;
+	@FXML
+	private Label txtTwitterAuthenticated;
+	@FXML
+	private TextField txtTwitterPIN;
+	@FXML
+	private Button twitterPINButton;
 
 	@FXML
 	private CheckBox enableIpfs;
@@ -255,7 +254,7 @@ public class PlayConfigurationView implements Initializable {
 	@FXML
 	private TableEditorView tableController;
 	@FXML
-    private StreamEditorView streamController;
+	private StreamEditorView streamController;
 
 	private Config config;
 	private PlayerConfig player;
@@ -272,6 +271,9 @@ public class PlayConfigurationView implements Initializable {
 	@FXML
 	public CheckBox clipboardScreenshot;
 
+	@FXML
+	private ComboBox<Config.ScreenShotFormat> screenshotFormat;
+
 	static void initComboBox(ComboBox<Integer> combo, final String[] values) {
 		combo.setCellFactory((param) -> new OptionListCell(values));
 		combo.setButtonCell(new OptionListCell(values));
@@ -287,35 +289,42 @@ public class PlayConfigurationView implements Initializable {
 		lr2configurationassist.setHgap(25);
 		lr2configurationassist.setVgap(4);
 
-
 		String[] scoreOptions = new String[] { "OFF", "MIRROR", "RANDOM", "R-RANDOM", "S-RANDOM", "SPIRAL", "H-RANDOM",
 				"ALL-SCR", "RANDOM-EX", "S-RANDOM-EX" };
 		initComboBox(scoreop, scoreOptions);
 		initComboBox(scoreop2, scoreOptions);
 		initComboBox(doubleop, new String[] { "OFF", "FLIP", "BATTLE", "BATTLE AS" });
-		initComboBox(seventoninepattern, new String[] { "OFF", "SC1KEY2~8", "SC1KEY3~9", "SC2KEY3~9", "SC8KEY1~7", "SC9KEY1~7", "SC9KEY2~8" });
-		String[] seventoninestring = new String[]{arg1.getString("SEVEN_TO_NINE_OFF"),arg1.getString("SEVEN_TO_NINE_NO_MASHING"),arg1.getString("SEVEN_TO_NINE_ALTERNATION")};
+		initComboBox(seventoninepattern,
+				new String[] { "OFF", "SC1KEY2~8", "SC1KEY3~9", "SC2KEY3~9", "SC8KEY1~7", "SC9KEY1~7", "SC9KEY2~8" });
+		String[] seventoninestring = new String[] { arg1.getString("SEVEN_TO_NINE_OFF"),
+				arg1.getString("SEVEN_TO_NINE_NO_MASHING"), arg1.getString("SEVEN_TO_NINE_ALTERNATION") };
 		initComboBox(seventoninetype, seventoninestring);
 		initComboBox(gaugeop, new String[] { "ASSIST EASY", "EASY", "NORMAL", "HARD", "EX-HARD", "HAZARD" });
 		initComboBox(fixhispeed, new String[] { "OFF", "START BPM", "MAX BPM", "MAIN BPM", "MIN BPM" });
 		playconfig.getItems().setAll(PlayMode.values());
 		initComboBox(lntype, new String[] { "LONG NOTE", "CHARGE NOTE", "HELL CHARGE NOTE" });
-		initComboBox(gaugeautoshift, new String[] { "NONE", "CONTINUE", "SURVIVAL TO GROOVE","BEST CLEAR","SELECT TO UNDER" });
+		initComboBox(gaugeautoshift,
+				new String[] { "NONE", "CONTINUE", "SURVIVAL TO GROOVE", "BEST CLEAR", "SELECT TO UNDER" });
 		initComboBox(bottomshiftablegauge, new String[] { "ASSIST EASY", "EASY", "NORMAL" });
 		initComboBox(minemode, new String[] { "OFF", "REMOVE", "ADD RANDOM", "ADD NEAR", "ADD ALL" });
 		initComboBox(scrollmode, new String[] { "OFF", "REMOVE", "ADD" });
 		initComboBox(longnotemode, new String[] { "OFF", "REMOVE", "ADD LN", "ADD CN", "ADD HCN", "ADD ALL" });
 
-		initComboBox(judgealgorithm, new String[] { arg1.getString("JUDGEALG_LR2"), arg1.getString("JUDGEALG_AC"), arg1.getString("JUDGEALG_BOTTOM_PRIORITY") });
-		String[] autosaves = new String[]{arg1.getString("NONE"),arg1.getString("BETTER_SCORE"),arg1.getString("BETTER_OR_SAME_SCORE"),arg1.getString("BETTER_MISSCOUNT")
-				,arg1.getString("BETTER_OR_SAME_MISSCOUNT"),arg1.getString("BETTER_COMBO"),arg1.getString("BETTER_OR_SAME_COMBO"),
-				arg1.getString("BETTER_LAMP"),arg1.getString("BETTER_OR_SAME_LAMP"),arg1.getString("BETTER_ALL"),arg1.getString("ALWAYS")};
+		initComboBox(judgealgorithm, new String[] { arg1.getString("JUDGEALG_LR2"), arg1.getString("JUDGEALG_AC"),
+				arg1.getString("JUDGEALG_BOTTOM_PRIORITY") });
+		String[] autosaves = new String[] { arg1.getString("NONE"), arg1.getString("BETTER_SCORE"),
+				arg1.getString("BETTER_OR_SAME_SCORE"), arg1.getString("BETTER_MISSCOUNT"),
+				arg1.getString("BETTER_OR_SAME_MISSCOUNT"), arg1.getString("BETTER_COMBO"),
+				arg1.getString("BETTER_OR_SAME_COMBO"),
+				arg1.getString("BETTER_LAMP"), arg1.getString("BETTER_OR_SAME_LAMP"), arg1.getString("BETTER_ALL"),
+				arg1.getString("ALWAYS") };
 		initComboBox(autosavereplay1, autosaves);
 		initComboBox(autosavereplay2, autosaves);
 		initComboBox(autosavereplay3, autosaves);
 		initComboBox(autosavereplay4, autosaves);
 
 		notesdisplaytiming.setValueFactoryValues(PlayerConfig.JUDGETIMING_MIN, PlayerConfig.JUDGETIMING_MAX, 0, 1);
+		screenshotFormat.getItems().setAll(Config.ScreenShotFormat.values());
 		resourceController.init(this);
 
 		checkNewVersion();
@@ -328,7 +337,7 @@ public class PlayConfigurationView implements Initializable {
 			final String downloadURL = MainLoader.getVersionChecker().getDownloadURL();
 			Platform.runLater(() -> {
 				newversion.setText(message);
-				if(downloadURL != null) {
+				if (downloadURL != null) {
 					newversion.setOnAction(new EventHandler<ActionEvent>() {
 
 						@Override
@@ -371,16 +380,17 @@ public class PlayConfigurationView implements Initializable {
 		resourceController.update(config);
 
 		skinController.update(config);
-        // int b = Boolean.valueOf(config.getJKOC()).compareTo(false);
+		// int b = Boolean.valueOf(config.getJKOC()).compareTo(false);
 
-        usecim.setSelected(config.isCacheSkinImage());
-        discord.setSelected(config.isUseDiscordRPC());
-        clipboardScreenshot.setSelected(config.isSetClipboardWhenScreenshot());
+		usecim.setSelected(config.isCacheSkinImage());
+		discord.setSelected(config.isUseDiscordRPC());
+		clipboardScreenshot.setSelected(config.isSetClipboardWhenScreenshot());
+		screenshotFormat.setValue(config.getScreenshotFormat());
 
 		enableIpfs.setSelected(config.isEnableIpfs());
 		ipfsurl.setText(config.getIpfsUrl());
 
-		if(players.getItems().contains(config.getPlayername())) {
+		if (players.getItems().contains(config.getPlayername())) {
 			players.setValue(config.getPlayername());
 		} else {
 			players.getSelectionModel().select(0);
@@ -403,16 +413,16 @@ public class PlayConfigurationView implements Initializable {
 
 	public void addPlayer() {
 		String[] ids = PlayerConfig.readAllPlayerID(config.getPlayerpath());
-		for(int i = 1;i < 1000;i++) {
+		for (int i = 1; i < 1000; i++) {
 			String playerid = "player" + i;
 			boolean b = true;
-			for(String id : ids) {
-				if(playerid.equals(id)) {
-					b =false;
+			for (String id : ids) {
+				if (playerid.equals(id)) {
+					b = false;
 					break;
 				}
 			}
-			if(b) {
+			if (b) {
 				PlayerConfig.create(config.getPlayerpath(), playerid);
 				players.getItems().add(playerid);
 				break;
@@ -477,7 +487,7 @@ public class PlayConfigurationView implements Initializable {
 
 		txtTwitterPIN.setDisable(true);
 		twitterPINButton.setDisable(true);
-		if(player.getTwitterAccessToken() != null && !player.getTwitterAccessToken().isEmpty()) {
+		if (player.getTwitterAccessToken() != null && !player.getTwitterAccessToken().isEmpty()) {
 			txtTwitterAuthenticated.setVisible(true);
 		} else {
 			txtTwitterAuthenticated.setVisible(false);
@@ -495,7 +505,7 @@ public class PlayConfigurationView implements Initializable {
 	 * ダイアログの項目をconfig.xmlに反映する
 	 */
 	public void commit() {
-	    videoController.commit(config);
+		videoController.commit(config);
 		audioController.commit();
 		musicselectController.commit();
 
@@ -506,15 +516,16 @@ public class PlayConfigurationView implements Initializable {
 
 		resourceController.commit();
 
-        // jkoc_hack is integer but *.setJKOC needs boolean type
+		// jkoc_hack is integer but *.setJKOC needs boolean type
 
-        config.setCacheSkinImage(usecim.isSelected());
+		config.setCacheSkinImage(usecim.isSelected());
 
 		config.setEnableIpfs(enableIpfs.isSelected());
 		config.setIpfsUrl(ipfsurl.getText());
 
 		config.setUseDiscordRPC(discord.isSelected());
 		config.setClipboardWhenScreenshot(clipboardScreenshot.isSelected());
+		config.setScreenshotFormat(screenshotFormat.getValue());
 
 		commitPlayer();
 
@@ -524,10 +535,10 @@ public class PlayConfigurationView implements Initializable {
 	}
 
 	public void commitPlayer() {
-		if(player == null) {
+		if (player == null) {
 			return;
 		}
-		if(playername.getText().length() > 0) {
+		if (playername.getText().length() > 0) {
 			player.setName(playername.getText());
 		}
 
@@ -566,8 +577,8 @@ public class PlayConfigurationView implements Initializable {
 		player.setMarkprocessednote(markprocessednote.isSelected());
 		player.setExtranoteDepth(extranotedepth.getValue());
 
-		player.setAutoSaveReplay( new int[]{autosavereplay1.getValue(),autosavereplay2.getValue(),
-				autosavereplay3.getValue(),autosavereplay4.getValue()});
+		player.setAutoSaveReplay(new int[] { autosavereplay1.getValue(), autosavereplay2.getValue(),
+				autosavereplay3.getValue(), autosavereplay4.getValue() });
 
 		player.setShowjudgearea(judgeregion.isSelected());
 		player.setTargetid(target.getValue());
@@ -584,39 +595,39 @@ public class PlayConfigurationView implements Initializable {
 		PlayerConfig.write(config.getPlayerpath(), player);
 	}
 
-    @FXML
+	@FXML
 	public void addBGMPath() {
-    	String s = showDirectoryChooser("BGMのルートフォルダを選択してください");
-    	if(s != null) {
-        	bgmpath.setText(s);
-    	}
+		String s = showDirectoryChooser("BGMのルートフォルダを選択してください");
+		if (s != null) {
+			bgmpath.setText(s);
+		}
 	}
 
-    @FXML
+	@FXML
 	public void addSoundPath() {
-    	String s = showDirectoryChooser("効果音のルートフォルダを選択してください");
-    	if(s != null) {
-    		soundpath.setText(s);
-    	}
+		String s = showDirectoryChooser("効果音のルートフォルダを選択してください");
+		if (s != null) {
+			soundpath.setText(s);
+		}
 	}
 
-    private String showFileChooser(String title) {
-    	FileChooser chooser = new FileChooser();
+	private String showFileChooser(String title) {
+		FileChooser chooser = new FileChooser();
 		chooser.setTitle(title);
 		File f = chooser.showOpenDialog(null);
 		return f != null ? f.getPath() : null;
-    }
+	}
 
-    private String showDirectoryChooser(String title) {
+	private String showDirectoryChooser(String title) {
 		DirectoryChooser chooser = new DirectoryChooser();
 		chooser.setTitle(title);
 		File f = chooser.showDialog(null);
 		return f != null ? f.getPath() : null;
-    }
+	}
 
 	private PlayMode pc = null;
 
-    @FXML
+	@FXML
 	public void updatePlayConfig() {
 		if (pc != null) {
 			PlayConfig conf = player.getPlayConfig(Mode.valueOf(pc.name())).getPlayconfig();
@@ -665,7 +676,7 @@ public class PlayConfigurationView implements Initializable {
 		return spinner.getValue();
 	}
 
-    @FXML
+	@FXML
 	public void start() {
 		commit();
 		playerPanel.setDisable(true);
@@ -682,35 +693,36 @@ public class PlayConfigurationView implements Initializable {
 		MainLoader.play(null, bms.player.beatoraja.BMSPlayerMode.PLAY, true, config, player, songUpdated);
 	}
 
-    @FXML
+	@FXML
 	public void loadAllBMS() {
 		commit();
 		loadBMS(null, true);
 	}
 
-    @FXML
+	@FXML
 	public void loadDiffBMS() {
 		commit();
 		loadBMS(null, false);
 	}
 
-	public void loadBMSPath(String updatepath){
+	public void loadBMSPath(String updatepath) {
 		commit();
-    	loadBMS(updatepath, false);
+		loadBMS(updatepath, false);
 	}
 
 	/**
 	 * BMSを読み込み、楽曲データベースを更新する
 	 *
 	 * @param updateAll
-	 *            falseの場合は追加削除分のみを更新する
+	 *                  falseの場合は追加削除分のみを更新する
 	 */
 	public void loadBMS(String updatepath, boolean updateAll) {
 		commit();
 		try {
 			SongDatabaseAccessor songdb = MainLoader.getScoreDatabaseAccessor();
-			SongInformationAccessor infodb = config.isUseSongInfo() ?
-					new SongInformationAccessor(Paths.get("songinfo.db").toString()) : null;
+			SongInformationAccessor infodb = config.isUseSongInfo()
+					? new SongInformationAccessor(Paths.get("songinfo.db").toString())
+					: null;
 			Logger.getGlobal().info("song.db更新開始");
 			songdb.updateSongDatas(updatepath, config.getBmsroot(), updateAll, infodb);
 			Logger.getGlobal().info("song.db更新完了");
@@ -720,7 +732,7 @@ public class PlayConfigurationView implements Initializable {
 		}
 	}
 
-    @FXML
+	@FXML
 	public void importScoreDataFromLR2() {
 		FileChooser chooser = new FileChooser();
 		chooser.getExtensionFilters().setAll(new ExtensionFilter("Lunatic Rave 2 Score Database File", "*.db"));
@@ -734,7 +746,8 @@ public class PlayConfigurationView implements Initializable {
 			Class.forName("org.sqlite.JDBC");
 			SongDatabaseAccessor songdb = MainLoader.getScoreDatabaseAccessor();
 			String player = players.getValue();
-			ScoreDatabaseAccessor scoredb = new ScoreDatabaseAccessor(config.getPlayerpath() + File.separatorChar + player + File.separatorChar + "score.db");
+			ScoreDatabaseAccessor scoredb = new ScoreDatabaseAccessor(
+					config.getPlayerpath() + File.separatorChar + player + File.separatorChar + "score.db");
 			scoredb.createTable();
 
 			ScoreDataImporter scoreimporter = new ScoreDataImporter(scoredb);
@@ -791,7 +804,7 @@ public class PlayConfigurationView implements Initializable {
 		}
 	}
 
-    @FXML
+	@FXML
 	public void exit() {
 		commit();
 		Platform.exit();
@@ -835,4 +848,3 @@ public class PlayConfigurationView implements Initializable {
 		}
 	}
 }
-
