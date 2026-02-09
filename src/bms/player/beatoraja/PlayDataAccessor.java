@@ -488,6 +488,10 @@ public final class PlayDataAccessor {
 		return log;
 	}
 
+	public void deleteScoreData(String sha256, boolean ln, int lnmode) {
+		scoredb.deleteScoreData(sha256, ln ? lnmode : 0);
+	}
+
 	public void deleteScoreData(BMSModel model, int lnmode) {
 		scoredb.deleteScoreData(model.getSHA256(), model.containsUndefinedLongNote() ? lnmode : 0);
 	}
