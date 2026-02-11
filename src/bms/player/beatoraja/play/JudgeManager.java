@@ -154,7 +154,10 @@ public class JudgeManager {
 
         algorithm = JudgeAlgorithm.valueOf(resource.getPlayerConfig().getPlayConfig(orgmode).getPlayconfig().getJudgetype());
         JudgeProperty rule = BMSPlayerRule.getBMSPlayerRule(orgmode).judge;
-        score.setJudgeAlgorithm(algorithm);
+         if(resource.getPlayerConfig().isIidxMode()) {
+        	rule = JudgeProperty.IIDX;
+        }
+       score.setJudgeAlgorithm(algorithm);
         score.setRule(BMSPlayerRule.getBMSPlayerRule(orgmode));
         
         combocond = rule.combo;
@@ -175,10 +178,10 @@ public class JudgeManager {
 
         final int judgerank = model.getJudgerank();
         final PlayerConfig config = resource.getPlayerConfig();
-        final int[] keyJudgeWindowRate = config.isCustomJudge()
+        final int[] keyJudgeWindowRate = config.isCustomJudge() && !config.isIidxMode()
                 ? new int[]{config.getKeyJudgeWindowRatePerfectGreat(), config.getKeyJudgeWindowRateGreat(), config.getKeyJudgeWindowRateGood()}
                 : new int[]{100, 100, 100};
-        final int[] scratchJudgeWindowRate = config.isCustomJudge()
+        final int[] scratchJudgeWindowRate = config.isCustomJudge() && !config.isIidxMode()
                 ? new int[]{config.getScratchJudgeWindowRatePerfectGreat(), config.getScratchJudgeWindowRateGreat(), config.getScratchJudgeWindowRateGood()}
                 : new int[]{100, 100, 100};
         for (CourseData.CourseDataConstraint mode : resource.getConstraint()) {

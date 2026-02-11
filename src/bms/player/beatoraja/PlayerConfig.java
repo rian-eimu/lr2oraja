@@ -136,6 +136,11 @@ public final class PlayerConfig {
 	private boolean markprocessednote = false;
 
 	/**
+	 * IIDX MODE (Force IIDX Judge & Gauge, Disable IR)
+	 */
+	private boolean iidxMode = false;
+
+	/**
 	 * H-RANDOM連打しきい値BPM
 	 */
 	private int hranThresholdBPM = 120;
@@ -375,6 +380,14 @@ public final class PlayerConfig {
 
 	public void setMarkprocessednote(boolean markprocessednote) {
 		this.markprocessednote = markprocessednote;
+	}
+
+	public boolean isIidxMode() {
+		return iidxMode;
+	}
+
+	public void setIidxMode(boolean iidxMode) {
+		this.iidxMode = iidxMode;
 	}
 
 	public PlayModeConfig getPlayConfig(Mode modeId) {
