@@ -125,6 +125,8 @@ public final class PlayerResource {
 	private String tablelevel = "";
 	private String tablefull;
 
+	private double failMeasure = Double.NaN;
+
 	public PlayerResource(AudioDriver audio, Config config, PlayerConfig pconfig) {
 		this.config = config;
 		this.pconfig = pconfig;
@@ -147,6 +149,7 @@ public final class PlayerResource {
 		bmsPaths = null;
 		setTablename("");
 		setTablelevel("");
+		failMeasure = Double.NaN;
 	}
 
 	public boolean setBMSFile(final Path f, BMSPlayerMode mode) {
@@ -564,5 +567,13 @@ public final class PlayerResource {
 
 	public void setOriginalMode(bms.model.Mode orgmode) {
 		this.orgmode = orgmode;
+	}
+
+	public double getFailMeasure() {
+		return failMeasure;
+	}
+
+	public void setFailMeasure(double failMeasure) {
+		this.failMeasure = failMeasure;
 	}
 }
