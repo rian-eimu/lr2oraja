@@ -400,7 +400,7 @@
                            <Insets top="5.0" />
                         </VBox.margin>
                     </HBox>
-                    <CheckBox fx:id="iidxMode" mnemonicParsing="false" text="IIDX MODE (Force IIDX Judge &amp; Gauge, Disable IR)" GridPane.columnIndex="0" GridPane.rowIndex="13" GridPane.columnSpan="4" />
+                    <CheckBox fx:id="iidxMode" mnemonicParsing="false" text="DX MODE" GridPane.columnIndex="0" GridPane.rowIndex="13" GridPane.columnSpan="4" />
 
                     <Button mnemonicParsing="false" onAction="#importScoreDataFromLR2" text="%IMPORT_LR2_SCORE">
                         <VBox.margin>

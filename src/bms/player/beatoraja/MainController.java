@@ -162,14 +162,14 @@ public class MainController {
 
 		Array<IRStatus> irarray = new Array<IRStatus>();
 		for(IRConfig irconfig : player.getIrconfig()) {
-			// rianIRの場合、IIDX MODEがオフならログイン自体をスキップする
+			// rianIRの場合、DX MODEがオフならログイン自体をスキップする
 			if (irconfig.getIrname() != null && irconfig.getIrname().startsWith("rianIR") && !player.isIidxMode()) {
-				Logger.getGlobal().info("rianIR: IIDX MODE is OFF. Skipping login.");
+				Logger.getGlobal().info("rianIR: DX MODE is OFF. Skipping login.");
 				continue;
 			}
-			// IIDX MODEがオンの場合、rianIR以外のログインをスキップする
+			// DX MODEがオンの場合、rianIR以外のログインをスキップする
 			if (player.isIidxMode() && (irconfig.getIrname() == null || !irconfig.getIrname().startsWith("rianIR"))) {
-				Logger.getGlobal().info(irconfig.getIrname() + ": IIDX MODE is ON. Skipping login.");
+				Logger.getGlobal().info(irconfig.getIrname() + ": DX MODE is ON. Skipping login.");
 				continue;
 			}
 			final IRConnection ir = IRConnectionManager.getIRConnection(irconfig.getIrname());
